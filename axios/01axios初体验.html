@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>01axios初体验</title>
+</head>
+
+<body>
+<!--  引入axios 获得axios函数	-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		//发动get 请求
+		//axios 获得的是promise对象
+		axios({
+			method:"GET",
+			url:"https://api.imjad.cn/cloudmusic/",
+			//get 方法传入参数
+			params:{
+				id:1,
+			}
+		}).then((res) => {
+			//获得6个属性 真正请求过来的数据在data里面
+			console.log(res);
+		});
+		//发动post 请求使用data 传参
+		axios({
+			method:"POST",
+			url:"https://api.imjad.cn/cloudmusic/",
+			data:{
+				id:1
+			}
+		}).then((res) => {
+			console.log(res);
+			//也返回6个属性的对象 真正的数据在data 里面
+		})
+	</script>
+</body>
+</html>

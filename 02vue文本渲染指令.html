@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>02文本渲染指令</title>
+</head>
+
+<body>
+	<!-- vue要挂载控制的模块 -->
+	<div id="app">
+<!--	使用v-text进行文本渲染	-->
+		<p v-text = "username">姓名</p>
+		<p v-text = "sex">性别</p>
+		<hr>
+<!--	但使用v-text 会把原本内容覆盖了 为了不覆盖原本内容我们可以使用插值符号 {{}}	-->
+		<p>姓名：{{ username }}</p>
+		<p>性别：{{ sex }}</p>
+<!--	由于v-text {{}}都无法让标签显示为正常的html语句 所以使用v-html来引入 可以正常显示 v-html也会覆盖原本内容	-->
+		<hr>
+		<p v-html = "username">姓名</p>
+		<p v-html = "sex">性别</p>
+		<p v-html = "h"></p>
+	</div>
+	
+<!--	引入vue模块 -- 等价于下载vue模块-->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script type = "text/javascript">
+		//引入vue 模块后 获得类似于jQuery $对象的 Vue 构造函数
+		//使用Vue构造函数创造实例
+		//mvvm模型的 vm -> viewModule
+		const vm = new Vue({
+			//mvvm模型的 v -> view
+			el:"#app",
+			//mvvm模型的 m -> module
+			data:{
+				username:"张三",
+				sex:"女",
+				h:"<h3>我是h3标签</h3>"
+			}
+		});
+	</script>
+</body>
+</html>

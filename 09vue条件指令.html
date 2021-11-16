@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>09vue条件指令</title>
+</head>
+
+<body>
+	<!-- vue要挂载控制的模块 -->
+	<div id="app">
+<!--	vue条件判断有两钟方式 	-->
+<!--	一个为v-if 另一个为v-show	-->
+		<h2>vue 条件指令初体验</h2>
+		<p v-if = "change">我是使用v-if</p>
+		<p v-show = "change"> 我是使用v-show </p>
+<!--	效果一样 底层 v-if 是动态的生成跟删除dom v-show是动态的添加删除display：none	-->
+		<h2>v-if 通常会和v-else-if v-else连用</h2>
+		<p v-if = "type === 'A'">优秀</p>
+		<p v-else-if = "type ==='B'">良好</p>
+		<p v-else-if = "type === 'C'">及格</p>
+		<p v-else>差</p>
+	</div>
+	
+<!--	引入vue模块 -- 等价于下载vue模块-->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script type = "text/javascript">
+		//引入vue 模块后 获得类似于jQuery $对象的 Vue 构造函数
+		//使用Vue构造函数创造实例
+		const vm = new Vue({
+			el:"#app",
+			data:{
+				change:true,
+				type:"A"
+			}
+		});
+	</script>
+</body>
+</html>

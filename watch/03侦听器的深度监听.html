@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>03侦听器的深度监听</title>
+</head>
+
+<body>
+	
+	<div id="app">
+		<input type="text" v-model = "admin.username">
+	</div>
+	<!--	引入vue模块 -- 等价于下载vue模块-->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script>
+		let vm = new Vue({
+			el:"#app",
+			data:{
+				admin:{
+					username:"admin",
+				},
+			},
+			//使用watch来简单数据变化，如果数据变化立马触发
+			//直接使用watch 监听admin 是监听不到 username 变化的
+			watch:{
+//				admin(newval,oldVal){
+//					console.log(newval);
+//				}
+				//1、使用对象监听 开启deep属性 
+				//获取的值是整合属性 对象
+//				admin:{
+//					handler(newVal,oldVal){
+//						console.log(newVal);
+//					},
+//					immediate:true,
+//					deep:true,
+//				}
+				//2、直接监听
+				'admin.username'(newVal){
+					console.log(newVal);
+				}
+			}
+		})
+	</script>
+</body>
+</html>

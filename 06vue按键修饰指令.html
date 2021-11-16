@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>06vue按键修饰指令</title>
+</head>
+
+<body>
+	<!-- vue要挂载控制的模块 -->
+	<div id="app">
+<!--	使用按键修饰符 减少使用keyCOde	-->
+		<input type="text" @keyup.esc = "esc" @keyup.enter = "enter">
+	</div>
+	
+<!--	引入vue模块 -- 等价于下载vue模块-->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script type = "text/javascript">
+		//引入vue 模块后 获得类似于jQuery $对象的 Vue 构造函数
+		//使用Vue构造函数创造实例
+		const vm = new Vue({
+			el:"#app",
+			data:{
+				username:"zhansan",
+			},
+			methods:{
+				esc(e){
+					e.target.value = "";
+				},
+				enter(){
+					console.log("发送Ajax请求")
+				}
+			}
+		});
+	</script>
+</body>
+</html>

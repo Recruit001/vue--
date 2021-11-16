@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>08双向绑定修饰符</title>
+</head>
+
+<body>
+	<!-- vue要挂载控制的模块 -->
+	<div id="app">
+<!--	v-model 同步的值为字符串类型 当进行数字运算会变为字符串拼接而出现错误 可在后面加.number修饰符 将值转化为数字在存入到数据源中	-->
+<!--	小计算器 输入两个值得出结果	-->
+		<p>
+			<input type="text" v-model.number = "n1"> + <input type="text" v-model.number = "n2"> 的值 为 {{ n1+n2 }}
+		</p>
+		<hr>
+<!--	一般我们输入框的值都要去掉两边的空格 可添加 .trim修饰符进行处理	-->
+		<input type="text" v-model = "n3" > <button @click = "log">log</button>
+		<input type="text" v-model.trim = "n4" > <button @click = "log2">log2</button>
+		<hr>
+<!--	使用lazy 让元素失去标点之后在进行数据修改	-->
+		<input type="text" v-model.lazy = "n5">
+	</div>
+	
+<!--	引入vue模块 -- 等价于下载vue模块-->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script type = "text/javascript">
+		//引入vue 模块后 获得类似于jQuery $对象的 Vue 构造函数
+		//使用Vue构造函数创造实例
+		const vm = new Vue({
+			el:"#app",
+			data:{
+				n1:1,
+				n2:2,
+				n3:3,
+				n4:4,
+				n5:5
+			},
+			methods:{
+				log(){
+					console.log(`输出"${this.n3}"`);
+				},
+				log2(){
+					console.log(`输出"${this.n4}"`)
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>07vue双向绑定</title>
+</head>
+
+<body>
+	<!-- vue要挂载控制的模块 -->
+	<div id="app">
+<!--	双向绑定用于可输入的表单元素中，input textarea select等	-->
+<!--	没使用双向绑定	-->
+		<div>{{ username }}</div>
+<!--	使用双向绑定修改数据源username的值	-->
+<!--	双向绑定让程序员不用操作dom就可以获取表单元素的值	-->
+		<input type="text" v-model = "username">
+	</div>
+	
+<!--	引入vue模块 -- 等价于下载vue模块-->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script type = "text/javascript">
+		//引入vue 模块后 获得类似于jQuery $对象的 Vue 构造函数
+		//使用Vue构造函数创造实例
+		const vm = new Vue({
+			el:"#app",
+			data:{
+				username:"zhansan",
+			}
+		});
+	</script>
+</body>
+</html>

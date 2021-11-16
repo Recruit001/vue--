@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>12品牌案例</title>
+	<!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+
+<body>
+	<div id="app" style = "padding:20px;">
+<!--	表单	-->
+<form class="form-inline" style = "margin-bottom: 20px;">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount" v-model.trim = "brand">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" @click.prevent = "add">添加</button>
+</form>
+<!--	表格	-->
+		<table class="table table-hover table-striped table-bordered">
+			<thead>
+				<th>序列</th>
+				<th>名字</th>
+				<th>时间</th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr v-for = "(item,index) in list" :key = "item.id">
+					<td>{{ index }}</td>
+					<td>{{ item.name }}</td>
+					<td>{{ item.time }}</td>
+					<td><a href="#" @click.prevent = "remove(item.id)">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!--	引入vue模块 -- 等价于下载vue模块-->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script>
+		const vm = new Vue({
+			el:"#app",
+			data:{
+				list:[
+					{id:1,status:true,name:"zs",time:new Date()},
+					{id:2,status:false,name:"ls",time:new Date()},
+					{id:3,status:true,name:"w5",time:new Date()},
+				],
+				brand:"",
+				nextId:4,
+			},
+			methods:{
+				remove(id){
+					this.list = this.list.filter((litem) => {
+						return litem.id !== id;
+					});
+				},
+				add(){
+					let obj = {};
+					obj.id = this.nextId;
+					obj.status = true;
+					obj.name = this.brand;
+					obj.time = new Date();
+					this.list.push(obj);
+					this.brand = "";
+					this.nextId += 1;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

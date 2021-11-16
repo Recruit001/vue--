@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>02axios发动请求简写</title>
+</head>
+
+<body>
+	<button id = "btnGet">发动Get请求</button>
+	<button id = "btnPost">发动Post请求</button>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		document.querySelector("#btnGet").addEventListener("click",async () => {
+			//如果返回的是promise对象 前面可加await 获得结果 不过await 要使用在 async函数中
+			//使用解构赋值 并使用冒号重命名data为res 
+			const {data:res} = await axios.get("https://api.imjad.cn/cloudmusic/",{
+				params:{
+					id:1,
+				}
+			});
+			console.log(res);
+		});
+		document.querySelector("#btnPost").addEventListener("click",async () => {
+			//发动post请求
+			const {data:res} = axios.post("https://api.imjad.cn/cloudmusic/",{
+				id:1
+			});
+			console.log(res);
+		})
+	</script>
+</body>
+</html>

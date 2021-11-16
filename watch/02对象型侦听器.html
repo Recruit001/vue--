@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>02对象型侦听器</title>
+</head>
+
+<body>
+	
+	<div id="app">
+		<input type="text" v-model = "admin">
+	</div>
+	<!--	引入vue模块 -- 等价于下载vue模块-->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script>
+		let vm = new Vue({
+			el:"#app",
+			data:{
+				admin:"admin",
+			},
+			//使用方法 侦听器无法让网页加载后就立即触发一次，我们可以使用对象型侦听器
+			watch:{
+				admin:{
+					//对象型侦听器用handler来接受处理函数，immediate来控制是否立即执行
+					handler(newVal,oldVal){
+						console.log(newVal,oldVal);
+					},
+					//默认为false 进入不立即触发，这里改为true
+					immediate:true,
+				}
+			}
+		})
+	</script>
+</body>
+</html>
